@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,7 +25,22 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Dados extends StatelessWidget {
+class Dados extends StatefulWidget {
+  @override
+  State<Dados> createState() => _DadosState();
+}
+
+class _DadosState extends State<Dados> {
+  int numbtnesquerda = 1;
+  int numbtndireita = 1;
+
+  void randomNums() {
+    setState(() {
+      numbtnesquerda = Random().nextInt(6) + 1;
+      numbtndireita = Random().nextInt(6) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -31,17 +48,13 @@ class Dados extends StatelessWidget {
         children: [
           Expanded(
               child: TextButton(
-            child: Image.asset('images/dado1.png'),
-            onPressed: () {
-              print('O botão da esquerda foi pressionado');
-            },
+            child: Image.asset('images/dado$numbtnesquerda.png'),
+            onPressed: () {randomNums();},
           )),
           Expanded(
               child: TextButton(
-            child: Image.asset('images/dado1.png'),
-            onPressed: () {
-              print('O botão da direita foi pressionado');
-            },
+            child: Image.asset('images/dado$numbtndireita.png'),
+            onPressed: () {randomNums();},
           )),
         ],
       ),
